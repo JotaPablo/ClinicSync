@@ -133,8 +133,8 @@ void beep(){
 // Task que trata a entrada de um novo paciente (Botão A)
 void vTaskEntrada(){
 
-    // Espera o botão A ser pressionado
     while(true){
+        // Espera o botão A ser pressionado
         if(xSemaphoreTake(xButtonASem, portMAX_DELAY) == pdTRUE){
             // Verifica se há ainda vagas no contador
             if(xSemaphoreTake(xContadorSem, 0) == pdTRUE){
@@ -169,9 +169,9 @@ void vTaskEntrada(){
 void vTaskSaida(){
 
     while(true){
-        // Espera o botão do joystick ser pressionado
+        // Espera o botão B ser pressionado
         if(xSemaphoreTake(xButtonBSem, portMAX_DELAY) == pdTRUE){
-            // Verifica se há vagas que possams er retiradas
+            // Verifica se há vagas que possam ser retiradas
             if(vagasPreenchidas > 0){
 
                 // Verifica se o display ainda está sendo utilizado
@@ -200,7 +200,7 @@ void vTaskSaida(){
 void VTaskReset(){
 
     while(true){
-
+        // Espera o botão do joystick ser pressionado
         if(xSemaphoreTake(xResetSem, portMAX_DELAY) == pdTRUE){
 
             // Desabilita as interrupções dos botões para evitar interferência durante o reset
