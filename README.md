@@ -1,4 +1,4 @@
-# ClinicSync - Monitor de Ocupação com FreeRTOS
+# ClinicSync - Monitor de Ocupação de Clinicas com FreeRTOS
 
 Projeto embarcado desenvolvido na Raspberry Pi Pico (RP2040) com FreeRTOS, que gerencia e exibe em tempo real o número de pacientes dentro de uma clínica. Utilizando **botões físicos, LEDs RGB, buzzer e display OLED**, o sistema oferece **sinalização visual e sonora** da ocupação atual. O modo de reset pode ser acionado via botão joystick.
 
