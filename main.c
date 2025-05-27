@@ -30,7 +30,7 @@ uint64_t last_time_button_joystick = 0;
 
 // Váriaveis do Programa
 
-#define max 10 // Constante de valor máximod e vagas
+#define max 10 // Constante de valor máximo de vagas
 
 // Contador de quantas vagas estão preenchidas na clínica
 // Deve ser 'volatile' porque pode ser acessado por várias tasks
