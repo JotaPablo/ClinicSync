@@ -238,27 +238,28 @@ void VTaskReset(){
 
 // Função de callback chamada quando um botão é pressionado
 static void gpio_button_handler(uint gpio, uint32_t events) {
-    
+
     uint64_t current_time = to_ms_since_boot(get_absolute_time());
 
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-
+    // Verifica qual botão gerou a interrupção e aplica debounce (200ms)
     if(gpio == BUTTON_A && current_time - last_time_button_a >= 200){
         last_time_button_a = current_time;
-        xSemaphoreGiveFromISR(xButtonASem, &xHigherPriorityTaskWoken);
+        // Libera o semáforo associado ao botão A
+        xSemaphoreGiveFromISR(xButtonASem, NULL);
     }
     else if(gpio == BUTTON_B && current_time - last_time_button_b >= 200){
         last_time_button_b = current_time;
-        xSemaphoreGiveFromISR(xButtonBSem, &xHigherPriorityTaskWoken);
+        // Libera o semáforo associado ao botão B
+        xSemaphoreGiveFromISR(xButtonBSem, NULL);
     }
     else if(gpio == BUTTON_JOYSTICK && current_time - last_time_button_joystick >= 200){
         last_time_button_joystick = current_time;
-        xSemaphoreGiveFromISR(xResetSem, &xHigherPriorityTaskWoken);
+        // Libera o semáforo para resetar o número de pacientes
+        xSemaphoreGiveFromISR(xResetSem, NULL);
     }
-    
-    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-
 }
+
+
 
 // Inicializa o sistema: configura GPIOs, display, buzzer e interrupções dos botões
 void setup(){
